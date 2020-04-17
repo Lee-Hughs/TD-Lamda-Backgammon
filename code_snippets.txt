@@ -1,0 +1,37 @@
+
+    while(game.winner == None):
+        game.rollDice()
+        print("Dice Roll: ",game.dice)
+        states = get_possible_states(game,game.moves)
+        if(len(states) > 0):
+            game = random.choice(states)
+        else:
+            game.player = ("a" if game.player == "b" else "b")
+        print(vars(game))
+        for point in game.board:
+            print(point)
+        game.checkWinner()
+    print(vars(game))
+
+    #for state in states:
+        #print("Possible State")
+        #print(vars(state))
+        #print("Possible Board")
+        #for point in state.board:
+            #print(point)
+    #print("Total possible moves: " , len(states))
+
+
+
+    for x in range(len(new.layers[2][0].in_con)):
+        grad = -(target - guess)*(guess*(1-guess))*(old.layers[2][0].in_con[x].inp.out)
+        eTrace[1][x] = lmbda*eTrace[1][x] + grad
+        new.layers[1][x].out_con[0].weight = new.layers[1][x].out_con[0].weight - (eTrace[1][x]*alpha)
+
+    for x in range(len(new.layers[1])):
+        # x = index of each hidden layer node
+        for y in range(len(new.layers[1][x].in_con)):
+            # y = index of each weight connecting an input layer node to a hidden layer node
+            grad = -(target - guess)*(guess*(1-guess))*old.layers[1][x].out_con[0].weight*(old.layers[1][x].out*(1-old.layers[1][x].out))*old.layers[1][x].in_con[y].inp.input
+            eTrace[0][x][y] = lmbda*eTrace[0][x][y] + grad
+            new.layers[1][x].in_con[y].inp.out_con[y].weight = new.layers[1][x].in_con[y].inp.out_con[y].weight - (eTrace[0][x][y]*alpha*grad)

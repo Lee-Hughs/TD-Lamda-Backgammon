@@ -1,0 +1,31 @@
+todo:
+	create the model for the NN with randomized weights,
+	create a method to assign each of the weight values based on a json file
+
+
+network model:
+	activation function for every neuron = 1/1+e-sum
+	for point in board:
+		1. one a
+		2. two a
+		3. three a
+		4. if a > 3, (total a's - 3)/2
+		5 - 8 same but for b
+		these make the first 192 input neurons
+	193: if a is moving
+	194: if b is moving
+	195: a's on the bar/2
+	196: b's on the bar/2
+	197: a's bourne off
+	198: b's bourne off
+
+
+loading weights:
+	input layer:
+		198 nodes * 50 connections: 9900 weights
+	hidden layer:
+		50 nodes * 1 weight
+	biases:
+		50 nodes * 1 + 1
+
+
