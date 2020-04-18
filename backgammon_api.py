@@ -1,4 +1,7 @@
-#!C:\Users\Lee\AppData\Local\Programs\Python\Python38-32\python.exe
+#!/usr/bin/python3.5
+### Python AI Script
+### Author: Lee Hughs
+### Date: 2020/04/15
 
 import random
 import copy
@@ -255,13 +258,12 @@ def get_weights(net):
     return weights
 
 if __name__ == '__main__':
-    print("start")
     if(len(sys.argv) != 2):
         exit(1)
 
     game = Game()
     tdg = Network()
-    api_load = json.load(sys.argv[1])
+    api_load = json.loads(sys.argv[1])
 
     #setting up the network
     input_layer = []
@@ -288,6 +290,7 @@ if __name__ == '__main__':
     
     game.board = api_load["board"]
     game.bar = api_load["bar"]
+    game.bar.reverse()
     game.borne = [15 - game.bar[0], 15 - game.bar[1]]
     for point in game.board:
         for piece in point:
@@ -309,5 +312,5 @@ if __name__ == '__main__':
         odds.append(tdg.layers[2][0].get_output())
         tdg.clear_inputs()
     game = states[odds.index(max(odds))]
-    print(vars(game));
+    print(json.dumps(vars(game)))
     exit()
