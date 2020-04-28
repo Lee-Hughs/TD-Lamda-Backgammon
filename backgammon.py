@@ -253,6 +253,13 @@ def get_weights(net):
         weights.append(layer_w)
     return weights
 
+def get_biases(net):
+    biases = []
+    for node in net.layers[1]:
+        biases.append(node.bias)
+    biases.append(net.layers[2][0].bias)
+    return biases
+
 if __name__ == '__main__':
     print("start program")
     game = Game()
@@ -279,10 +286,16 @@ if __name__ == '__main__':
             in_node.add_connection(out_node, 1)
 
     tdg.layers = [input_layer, hidden_layer, output_layer]
+
     #loading the weights from json file
     with open("weights.json") as json_file:
         weight_data = json.load(json_file)
         tdg.load_weights(weight_data)
+
+    #loading the biases from json file
+    with open("bias.json") as json_file:
+        bias_data = json.load(json_file)
+        tdg.load_biases(bias_data)
 
     #declare some constants
     lmbda = 0.5
@@ -295,7 +308,7 @@ if __name__ == '__main__':
 
     while(game_num < 1000):
         #set up eligibility trace vector
-        eTrace = [ [ [0]*50 ] * 198, [0]*50 ]
+        eTrace = [ [ [0]*50 ] * 198, [0]*50, [0]*51 ]
         step = 1
         old_score = 0
         score = 0
@@ -347,4 +360,10 @@ if __name__ == '__main__':
             with open("new_weights.json","w") as weight_file:
                 weight_file.write(json.dumps(new_w))
                 weight_file.close()
+            new_b = get_biases(tdg) 
+            with open("new_bias.json","w") as bias_file:
+                bias_file.write(json.dumps(new_b))
+                bias_file.close()
+
+
 

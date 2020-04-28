@@ -281,6 +281,11 @@ if __name__ == '__main__':
         weight_data = json.load(json_file)
         tdg.load_weights(weight_data)
 
+    #loading the biases from json file
+    with open("new_bias.json") as json_file:
+        bias_data = json.load(json_file)
+        tdg.load_biases(bias_data)
+
     game = Game()
     game.rollDice()
     print(vars(game))
@@ -296,6 +301,7 @@ if __name__ == '__main__':
         for node in tdg.layers[1]:
             node.send_output()
         odds.append(tdg.layers[2][0].get_output())
+        print("input for output node: " + str(tdg.layers[2][0].input))
         tdg.clear_inputs()
     game = states[odds.index(max(odds))]
     score = max(odds)
