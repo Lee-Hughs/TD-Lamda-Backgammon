@@ -22,9 +22,8 @@ def gen_weights(model):
 
 if __name__ == '__main__':
     biases = []
-    for x in range(50):
+    for x in range(51):
         biases.append(round(random.uniform(-2,2),2))
-    biases.append(round(random.uniform(-20,-25),2))
 
 
     with open("bias.json","w") as bias_file:
