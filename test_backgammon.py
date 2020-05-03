@@ -1,4 +1,4 @@
-#!C:\Users\Lee\AppData\Local\Programs\Python\Python38-32\python.exe
+#!C:\Users\leehu\AppData\Local\Programs\Python\Python37\python.exe
 
 import random
 import copy

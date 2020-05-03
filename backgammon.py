@@ -1,4 +1,4 @@
-#!C:\Users\Lee\AppData\Local\Programs\Python\Python38-32\python.exe
+#!C:\Users\leehu\AppData\Local\Programs\Python\Python37\python.exe
 
 import random
 import copy
@@ -306,7 +306,7 @@ if __name__ == '__main__':
     old_model = None
     game_num = 0
 
-    while(game_num < 1000):
+    while(game_num < 10000):
         #set up eligibility trace vector
         eTrace = [ [ [0]*50 ] * 198, [0]*50, [0]*51 ]
         step = 1

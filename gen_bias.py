@@ -1,4 +1,4 @@
-#!C:\Users\Lee\AppData\Local\Programs\Python\Python38-32\python.exe
+#!C:\Users\leehu\AppData\Local\Programs\Python\Python37\python.exe
 import random
 import json
 
@@ -15,7 +15,7 @@ def gen_weights(model):
             if( a < len(model) - 1 ):
                 #for node in the next layer
                 for x in range(model[a+1]):
-                    node.append(round(random.uniform(-4,4),2))
+                    node.append(round(random.uniform(-1,1),4))
             layer.append(node)
         weights.append(layer)
     return weights
@@ -23,7 +23,7 @@ def gen_weights(model):
 if __name__ == '__main__':
     biases = []
     for x in range(51):
-        biases.append(round(random.uniform(-2,2),2))
+        biases.append(round(random.uniform(-2,2),4))
 
 
     with open("bias.json","w") as bias_file:
